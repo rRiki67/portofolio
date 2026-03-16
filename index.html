@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="resurces/style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">PORTFOLIO.</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero section">
+        <div class="hero-content fade-in">
+            <h1>Hi, I'm a Riccardo.</h1>
+            <p>Bringing ideas to life through design, style, and fashion.</p>
+            <a href="#work" class="btn">View My Work</a>
+        </div>
+    </header>
+
+    <section id="work" class="section">
+        <h2 class="section-title fade-in">Selected Work</h2>
+        <div class="grid-container">
+            <div class="grid-item fade-in">
+                <div class="image-placeholder"><img class="img" src="Screenshot 2026-03-16 151748.png" alt="Project 1"></div>
+            </div>
+            <div class="grid-item fade-in">
+                <div class="image-placeholder"><img class="img" src="Screenshot 2026-03-16 151810.png" alt="Project 2"></div>
+            </div>
+          
+                
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2 class="section-title fade-in">Let's Connect</h2>
+        <p class="fade-in">Ready to collaborate or just want to say hi?</p>
+        <a href="mailto:your.email@example.com" class="btn fade-in">Send an Email</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Personal Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Select all elements with the 'fade-in' class
+            const faders = document.querySelectorAll('.fade-in');
+
+            // Options for the observer
+            const appearOptions = {
+                threshold: 0.15, // Triggers when 15% of the element is visible
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            // Create the Intersection Observer
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return; // If not on screen, do nothing
+                    } else {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once it has faded in
+                    }
+                });
+            }, appearOptions);
+
+            // Apply the observer to each element
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>
